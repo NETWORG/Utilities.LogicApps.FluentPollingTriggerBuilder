@@ -33,6 +33,7 @@ public class PollingDto
 }
 
 // ------------------------------------------------------------------------
+private readonly IHttpContextAccessor _contextAccessor;
 
 [HttpGet(nameof(OnItemsUpdated))]
 [ProducesResponseType(202)]
@@ -44,7 +45,7 @@ public Task<IActionResult> OnItemsUpdated([FromQuery] PollingDto pollingState)
         .SetStateFactory(() => new PollingDto(DateTime.UtcNow))
         .SetStateUpdate((oldState, polled) => new PollingDto(now))
         .SetPollingStateEmptyPredicate(state => !state.TimeStamp.HasValue) // timestamp empty, Logic App is polling for the first time
-        .SetPollingTask(async state => await items.Where(x => x.UpdatedAt > state.TimeStamp))
+        .SetPollingTask(async state => await items.Where(x => x.UpdatedAt > state.TimeStamp).ToListAsync())
         .PollAsAction(pollingState, _contextAccessor);
 }
 ```
@@ -73,6 +74,7 @@ public class PollingDto
 }
 
 // ------------------------------------------------------------------------
+private readonly IHttpContextAccessor _contextAccessor;
 
 [HttpGet(nameof(OnItemsUpdated))]
 [ProducesResponseType(202)]
@@ -86,7 +88,7 @@ public Task<IActionResult> OnItemsUpdated([FromQuery] PollingDto pollingState)
         .SetStateFactory(() => new PollingDto(DateTime.UtcNow, pollingState.CompanyName))
         .SetStateUpdate((oldState, polled) => {oldState.Timestamp = now; return oldState;})
         .SetPollingStateEmptyPredicate(state => !state.TimeStamp.HasValue) // timestamp empty, Logic App is polling for the first time
-        .SetPollingTask(async state => await items.Where(x => x.UpdatedAt > state.TimeStamp && x.Company.Name == state.CompanyName))
+        .SetPollingTask(async state => await items.Where(x => x.UpdatedAt > state.TimeStamp && x.Company.Name == state.CompanyName).ToListAsync())
         .PollAsAction(pollingState, _contextAccessor);
 }
 ```
