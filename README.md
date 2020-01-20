@@ -2,7 +2,7 @@ NETWORG.Utilities.LogicApps.FluentPollingTriggerBuilder
 ---
 The easiest way, how to support [Logic Apps Polling Trigger](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-workflow-actions-triggers#trigger-multiple-runs) in your .Net Core API.
 
-![](https://github.com/NETWORG/fluent-polling-trigger-builder/workflows/Build%20and%20test/badge.svg)
+![](https://github.com/NETWORG/Utilities.LogicApps.FluentPollingTriggerBuilder/workflows/Build%20and%20test/badge.svg)
 
 ## Features
 * Fluent API - easy to use functional API, just like others 
