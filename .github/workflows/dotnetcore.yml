@@ -1,0 +1,22 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - master # Your default release branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Restore with dotnet
+      run: dotnet restore src/FluentPollingTriggerBuilder/FluentPollingTriggerBuilder.csproj
+    - name: Build with dotnet
+      run: dotnet build src/FluentPollingTriggerBuilder/FluentPollingTriggerBuilder.csproj --configuration Release
+    - name: Test with dotnet
+      run: dotnet test tests/FluentPollingTriggerBuilder.Tests/FluentPollingTriggerBuilder.Tests.csproj
