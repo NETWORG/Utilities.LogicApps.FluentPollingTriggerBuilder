@@ -5,8 +5,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>TheNetw.org</Company>
     <Authors>jan.skala@thenetw.org</Authors>
-    <Description>Utills for LogicApps. Fluent Async polling trigger. Create polling trigger on your backend API and call it from Logic Apps.</Description>
+    <Description>Utills for LogicApps. Fluent Async polling trigger. Create a polling trigger on your backend API and call it from Logic Apps.</Description>
     <Product>Networg Utilities LogicApp utills</Product>
+    <RepositoryUrl>https://github.com/NETWORG/Utilities.LogicApps.FluentPollingTriggerBuilder</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +19,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
